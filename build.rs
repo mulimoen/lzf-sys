@@ -3,9 +3,9 @@ fn main() {
     let _header_path = {
         #[cfg(feature = "static")]
         {
-            println!("cargo:rerun-if-changed=source/lzf_c.c");
-            println!("cargo:rerun-if-changed=source/lzf_d.c");
-            println!("cargo:rerun-if-changed=source/lzf.h");
+            println!("cargo::rerun-if-changed=source/lzf_c.c");
+            println!("cargo::rerun-if-changed=source/lzf_d.c");
+            println!("cargo::rerun-if-changed=source/lzf.h");
             cc::Build::new()
                 .warnings(false)
                 .file("source/lzf_c.c")
@@ -17,7 +17,7 @@ fn main() {
         }
         #[cfg(not(feature = "static"))]
         {
-            println!("cargo:rustc-link-lib=lzf");
+            println!("cargo::rustc-link-lib=lzf");
             "wrapper.h"
         }
     };
